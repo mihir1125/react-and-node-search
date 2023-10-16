@@ -1,0 +1,34 @@
+{
+    "characters": [
+        {
+            "title": "Aang",
+            "image": "/images/aang.png",
+            "content": "The last Airbender and the Avatar, tasked with restoring balance to the world."
+        },
+        {
+            "title": "Katara",
+            "image": "/images/katara.png",
+            "content": "A skilled waterbender and Aang's loyal friend, who helps him on his journey."
+        },
+        {
+            "title": "Zuko",
+            "image": "/images/zuko.png",
+            "content": "The exiled Fire Nation prince on a quest to capture Aang but later seeking redemption."
+        },
+        {
+            "title": "Azula",
+            "image": "/images/azula.png",
+            "content": "Zuko's cunning and ruthless sister, a formidable firebender and antagonist."
+        },
+        {
+            "title": "Sokka",
+            "image": "/images/sokka.png",
+            "content": "Katara's brother, a warrior, and comic relief, who becomes a key part of the group."
+        },
+        {
+            "title": "Toph",
+            "image": "/images/toph.png",
+            "content": "A blind earthbender with extraordinary skills in metalbending."
+        }
+    ]
+}
