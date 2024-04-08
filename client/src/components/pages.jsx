@@ -12,7 +12,7 @@ function CardContainer({ card }) {
                         src={card.image}
                         alt={card.title}
                         width="200px"
-                        height="200px"
+                        max-height="500px"
                         style={{ objectFit: "contain" }}
                     />
                     <div className="card-body">

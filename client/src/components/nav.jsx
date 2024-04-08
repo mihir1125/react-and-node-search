@@ -3,17 +3,22 @@ import { Outlet, Link } from "react-router-dom";
 function Nav({ query, charList, queryHandler, cardHandler }) {
     return (
         <>
-            <nav className="navbar navbar-expanded-md bg-primary">
+            <nav className="navbar navbar-expand-md bg-primary">
                 <div className="container-fluid">
                     <Link to="/" className="navbar-brand">
-                        WC Experiment 5
+                        Cloud Computing
                     </Link>
-                    <div className="position-relative">
-                        <form
-                            action="http://localhost:5000"
-                            className="d-flex"
-                            role="search"
+                    <div className="navbar-nav">
+                        <Link
+                            className="nav-link"
+                            aria-current="page"
+                            to="/new"
                         >
+                            New post
+                        </Link>
+                    </div>
+                    <div className="position-relative">
+                        <form action="/" className="d-flex" role="search">
                             <input
                                 type="search"
                                 className="form-control me-2"
@@ -48,7 +53,9 @@ function Nav({ query, charList, queryHandler, cardHandler }) {
 }
 
 function Results({ query, charList, cardHandler }) {
-    if (query == "") return [];
+    if (query == "") {
+        return [];
+    }
     const elements = [];
     charList.forEach((char, index) => {
         if (char.toLowerCase().indexOf(query) > -1) {
@@ -64,7 +71,8 @@ function Results({ query, charList, cardHandler }) {
             elements.push(element);
         }
     });
-    return [...elements];
+    // return [...elements];
+    return elements;
 }
 
 export default Nav;

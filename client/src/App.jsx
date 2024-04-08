@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/nav.jsx";
 import CardContainer from "./components/pages.jsx";
+import NewPost from "./components/newpost.jsx";
 import "./App.css";
 
 function App() {
@@ -33,21 +34,15 @@ function App() {
 
     return (
         <BrowserRouter>
+            <Nav
+                query={query}
+                charList={charList}
+                queryHandler={onKeyUpHandler}
+                cardHandler={fetchCard}
+            />
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <>
-                            <Nav
-                                query={query}
-                                charList={charList}
-                                queryHandler={onKeyUpHandler}
-                                cardHandler={fetchCard}
-                            />
-                            <CardContainer card={card} />
-                        </>
-                    }
-                ></Route>
+                <Route path="/" element={<CardContainer card={card} />} />
+                <Route path="/new" element={<NewPost />} />
             </Routes>
         </BrowserRouter>
     );
