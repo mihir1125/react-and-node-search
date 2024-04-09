@@ -95,7 +95,7 @@ app.post("/newpost", upload.single("image"), (req, res, next) => {
                 console.log("Error:\n", err);
                 return res.redirect(
                     500,
-                    `${WEBSERVERADDRESS}:${WEBSERVERPORT}/newpost`
+                    `${WEBSERVERADDRESS}:${WEBSERVERPORT}/new`
                 );
             }
             res.redirect(302, `${WEBSERVERADDRESS}:${WEBSERVERPORT}/`);
