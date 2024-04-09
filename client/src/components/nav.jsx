@@ -73,7 +73,6 @@ function Results({ query, charList, cardHandler }) {
             elements.push(element);
         }
     });
-    // return [...elements];
     return elements;
 }
 

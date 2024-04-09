@@ -2,15 +2,28 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const mysql = require("mysql");
-const { characters } = require("./characters.json");
-const app = express();
+const multer = require("multer");
 const dotenv = require("dotenv");
+const fs = require("fs");
+
 dotenv.config();
-const { SERVERPORT } = process.env;
+const app = express();
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "uploads/");
+    },
+    filename: function (req, file, cb) {
+        cb(null, "temp.png");
+    },
+});
+const upload = multer({
+    storage: storage,
+});
+const { SERVERPORT, WEBSERVERADDRESS, WEBSERVERPORT } = process.env;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: "false" }));
 app.use(cors());
-app.use("/images", express.static(path.join(__dirname, "/images")));
 
 const con = mysql.createConnection({
     host: "localhost",
@@ -44,7 +57,6 @@ app.get("/api/get/character-list", (req, res) => {
 });
 
 app.get("/api/get/character-card/:id", (req, res) => {
-    const card = characters[req.params.id];
     con.query(
         `SELECT * FROM posts WHERE id = ${req.params.id}`,
         (err, result, fields) => {
@@ -66,7 +78,30 @@ app.get("/api/get/character-card/:id", (req, res) => {
     );
 });
 
-app.post("/newpost", (req, res) => {});
+app.post("/newpost", upload.single("image"), (req, res, next) => {
+    const imageBlob = fs.readFileSync(req.file.path);
+    const { username: author, title, desc: description } = req.body;
+    const image = "data:image/png;base64," + imageBlob.toString("base64");
+    con.query(
+        `INSERT INTO posts SET ?`,
+        {
+            author: author,
+            title: title,
+            image: imageBlob,
+            description: description,
+        },
+        (err, result, fields) => {
+            if (err) {
+                console.log("Error:\n", err);
+                return res.redirect(
+                    500,
+                    `${WEBSERVERADDRESS}:${WEBSERVERPORT}/newpost`
+                );
+            }
+            res.redirect(302, `${WEBSERVERADDRESS}:${WEBSERVERPORT}/`);
+        }
+    );
+});
 
 app.listen(SERVERPORT, () => {
     console.log(`Server listening on port: ${SERVERPORT}`);

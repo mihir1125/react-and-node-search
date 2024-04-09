@@ -13,6 +13,7 @@ function CardContainer({ card }) {
                         alt={card.title}
                         width="200px"
                         max-height="500px"
+                        className="rounded"
                         style={{ objectFit: "contain" }}
                     />
                     <div className="card-body">

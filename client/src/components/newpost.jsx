@@ -1,10 +1,17 @@
 function NewPost() {
+    const { VITE_SERVERADDRESS: SERVERADDRESS, VITE_SERVERPORT: SERVERPORT } =
+        import.meta.env;
+    const server = `${SERVERADDRESS}:${SERVERPORT}`;
     return (
         <>
             <div className="container-md p-5 w-50">
                 <h1 className="mb-3">New post</h1>
                 <div className="mb-3">
-                    <form action="http://localhost:5000/newpost">
+                    <form
+                        method="POST"
+                        action={`${server}/newpost`}
+                        encType="multipart/form-data"
+                    >
                         <label htmlFor="username" className="form-label">
                             Name
                         </label>
