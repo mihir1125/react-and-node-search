@@ -4,6 +4,8 @@ import Nav from "./components/nav.jsx";
 import CardContainer from "./components/pages.jsx";
 import NewPost from "./components/newpost.jsx";
 import "./App.css";
+const { SERVERADDRESS, SERVERPORT } = process.env;
+const server = `${SERVERADDRESS}:${SERVERPORT}`;
 
 function App() {
     const [query, setQuery] = useState("");
@@ -11,15 +13,20 @@ function App() {
     const [card, setCard] = useState({});
 
     function fetchCharList() {
-        fetch("http://localhost:5000/api/get/character-list")
+        fetch(`${server}/api/get/character-list`)
             .then((res) => res.json())
-            .then((res) => setCharList(res));
+            .then((res) => {
+                setCharList(res);
+            });
     }
 
     function fetchCard(id) {
-        fetch("http://localhost:5000/api/get/character-card/" + id)
+        fetch(`${server}api/get/character-card/` + id)
             .then((res) => res.json())
-            .then((res) => setCard(res));
+            .then((res) => {
+                console.log(res);
+                setCard(res);
+            });
         setQuery("");
     }
 

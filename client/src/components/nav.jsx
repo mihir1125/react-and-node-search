@@ -18,7 +18,7 @@ function Nav({ query, charList, queryHandler, cardHandler }) {
                         </Link>
                     </div>
                     <div className="position-relative">
-                        <form action="/" className="d-flex" role="search">
+                        <form className="d-flex" role="search">
                             <input
                                 type="search"
                                 className="form-control me-2"
@@ -27,12 +27,13 @@ function Nav({ query, charList, queryHandler, cardHandler }) {
                                     queryHandler(e.target.value);
                                 }}
                             />
-                            <button
-                                className="btn btn-outline-light"
-                                type="submit"
-                            >
-                                Search
-                            </button>
+                            <Link to="/">
+                                <input
+                                    className="btn btn-outline-light"
+                                    type="button"
+                                    value="Search"
+                                />
+                            </Link>
                         </form>
                         <div
                             className="list-group position-absolute w-100"
@@ -57,16 +58,17 @@ function Results({ query, charList, cardHandler }) {
         return [];
     }
     const elements = [];
-    charList.forEach((char, index) => {
-        if (char.toLowerCase().indexOf(query) > -1) {
+    charList.forEach((char) => {
+        if (char.title.toLowerCase().indexOf(query) > -1) {
             const element = (
-                <a
+                <Link
                     className="list-group-item list-group-item-action cursor-pointer"
-                    key={index}
-                    onClick={() => cardHandler(index)}
+                    key={char.id}
+                    onClick={() => cardHandler(char.id)}
+                    to="/"
                 >
-                    {char}
-                </a>
+                    {char.title}
+                </Link>
             );
             elements.push(element);
         }
