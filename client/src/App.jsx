@@ -4,7 +4,9 @@ import Nav from "./components/nav.jsx";
 import CardContainer from "./components/pages.jsx";
 import NewPost from "./components/newpost.jsx";
 import "./App.css";
-const { SERVERADDRESS, SERVERPORT } = process.env;
+
+const { VITE_SERVERADDRESS: SERVERADDRESS, VITE_SERVERPORT: SERVERPORT } =
+    import.meta.env;
 const server = `${SERVERADDRESS}:${SERVERPORT}`;
 
 function App() {
@@ -21,10 +23,9 @@ function App() {
     }
 
     function fetchCard(id) {
-        fetch(`${server}api/get/character-card/` + id)
+        fetch(`${server}/api/get/character-card/` + id)
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
                 setCard(res);
             });
         setQuery("");

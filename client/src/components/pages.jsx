@@ -2,7 +2,6 @@ function CardContainer({ card }) {
     if (Object.keys(card).length == 0) {
         return;
     } else {
-        console.log(card.image);
         return (
             <div className="container-md p-5">
                 <div

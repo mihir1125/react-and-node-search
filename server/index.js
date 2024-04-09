@@ -4,7 +4,9 @@ const cors = require("cors");
 const mysql = require("mysql");
 const { characters } = require("./characters.json");
 const app = express();
-const ADDRESS = `${process.env.SERVERADDRESS}:${process.env.SERVERPORT}`;
+const dotenv = require("dotenv");
+dotenv.config();
+const { SERVERPORT } = process.env;
 
 app.use(express.json());
 app.use(cors());
@@ -66,6 +68,6 @@ app.get("/api/get/character-card/:id", (req, res) => {
 
 app.post("/newpost", (req, res) => {});
 
-app.listen(PORT, () => {
-    console.log(`Server listening on port: ${PORT}`);
+app.listen(SERVERPORT, () => {
+    console.log(`Server listening on port: ${SERVERPORT}`);
 });
