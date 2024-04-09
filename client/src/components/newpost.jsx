@@ -17,6 +17,7 @@ function NewPost() {
                         </label>
                         <input
                             name="username"
+                            required
                             type="username"
                             className="form-control mb-3"
                             id="username"
@@ -29,6 +30,7 @@ function NewPost() {
                         </label>
                         <input
                             name="title"
+                            required
                             type="text"
                             className="form-control mb-3"
                             id="title"
@@ -47,6 +49,7 @@ function NewPost() {
                         </label>
                         <input
                             name="image"
+                            required
                             className="form-control mb-3"
                             type="file"
                             id="image"
@@ -57,6 +60,7 @@ function NewPost() {
                             Description
                         </label>
                         <textarea
+                            required
                             name="desc"
                             className="form-control mb-3"
                             id="desc"

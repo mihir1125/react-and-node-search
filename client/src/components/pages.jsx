@@ -5,7 +5,7 @@ function CardContainer({ card }) {
         return (
             <div className="container-md p-5">
                 <div
-                    className="card align-items-center py-4 pb-0 bg-primary"
+                    className="card py-4 pb-0 bg-primary"
                     style={{ width: "300px" }}
                 >
                     <img
@@ -13,13 +13,13 @@ function CardContainer({ card }) {
                         alt={card.title}
                         width="200px"
                         max-height="500px"
-                        className="rounded"
+                        className="rounded align-self-center"
                         style={{ objectFit: "contain" }}
                     />
                     <div className="card-body">
                         <h5 className="card-title">{card.title}</h5>
                         <p className="card-text">{card.description}</p>
-                        <p className="font-italic">By {card.author}</p>
+                        <p className="fst-italic">By {card.author}</p>
                     </div>
                 </div>
             </div>
